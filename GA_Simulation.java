@@ -8,7 +8,7 @@ public class GA_Simulation {
     // number of winners
     int k;
     // number of evolution rounds to run
-    int r = 100;
+    int r;
 
     /*
      * Constructor stores experimental parameters in field
@@ -91,14 +91,22 @@ public class GA_Simulation {
         System.out.println("Lowest fitness score: "+ bottom.getFitness());
     }
 
+    public void run() {
+        ArrayList<Individual> generation = init();
+        System.out.println("\nGeneration: 1");
+        rankPopulation(generation);
+        describeGeneration(generation);
+        for (int i = 0; i < r; i++) {
+            System.out.println("\nGeneration: "+(i+1));
+            rankPopulation(generation);
+            generation = evolve(generation);
+            describeGeneration(generation);
+        }
+    }
+
     public static void main(String[] args) {
         GA_Simulation experiment = new GA_Simulation();
-        ArrayList<Individual> generation = experiment.init();
-        for (int i = 0; i < 100; i++) {
-            System.out.println("\nGeneration: "+i);
-            generation = experiment.evolve(generation);
-            experiment.describeGeneration(generation);
-        }
+        experiment.run();
     }
 
 }
