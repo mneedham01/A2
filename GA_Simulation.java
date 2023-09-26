@@ -2,6 +2,9 @@ import java.util.ArrayList;
 import java.util.Comparator;
 import java.util.concurrent.ThreadLocalRandom;
 
+/*
+ * Methods to run experiment with Individuals
+ */
 public class GA_Simulation {
     // number of individuals in a population
     int n;
@@ -14,9 +17,9 @@ public class GA_Simulation {
      * Constructor stores experimental parameters in field
      */
     public GA_Simulation() {
-        this.n = 100;
-        this.k = 15;
-        this.r= 100;
+        this.n = 1000;
+        this.k = 10;
+        this.r= 1000;
     }
 
     /*
@@ -91,19 +94,26 @@ public class GA_Simulation {
         System.out.println("Lowest fitness score: "+ bottom.getFitness());
     }
 
+    /*
+     * Creates initial population, ranks it, describes it,
+     * evolves, and repeats.
+     */
     public void run() {
         ArrayList<Individual> generation = init();
         System.out.println("\nGeneration: 1");
         rankPopulation(generation);
         describeGeneration(generation);
         for (int i = 0; i < r; i++) {
-            System.out.println("\nGeneration: "+(i+1));
+            System.out.println("\nGeneration: "+(i+2));
             rankPopulation(generation);
             generation = evolve(generation);
             describeGeneration(generation);
         }
     }
 
+    /*
+     * Creates a GA_Simulation and runs it
+     */
     public static void main(String[] args) {
         GA_Simulation experiment = new GA_Simulation();
         experiment.run();
