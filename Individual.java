@@ -35,7 +35,6 @@ public class Individual {
         for (int i = 0; i < p1Length; i++) {
             this.chromosome.add(p1.get(i));
         }
-        System.out.println("starting p2");
         for (int i = p1Length; i < p1Length + p2Length; i++) {
             this.chromosome.add(p2.get(i - p1Length - p2Length + p2.size()));
         }
@@ -46,14 +45,31 @@ public class Individual {
         }
         // random mutations
         for (int i = 0; i < this.chromosome.size(); i++) {
-            System.out.println("in mutuations");
             Double rand = ThreadLocalRandom.current().nextDouble();
-            System.out.println("rand="+rand);
             if (rand < m) {
-                System.out.println("if rand < m");
                 this.chromosome.set(i, randomLetter(g));
             }
         }
+    }
+
+    public int getFitness() {
+        int fitness = 0;
+        int size = this.chromosome.size();
+        // Compare each letter with its mirror partner
+        for (int i = 0; i < Math.round(size / 2); i++ ){
+            if (this.chromosome.get(i) == this.chromosome.get(size - 1 - i)) {
+                fitness += 1;
+            } else {
+                fitness -= 1;
+            }
+        }
+        // Compare each letter with the preceding letter
+        for (int i = 1; i < this.chromosome.size(); i++) {
+            if (this.chromosome.get(i) == this.chromosome.get(i-1)){
+                fitness -= 1;
+            }
+        }
+        return fitness;
     }
 
 
@@ -83,6 +99,7 @@ public class Individual {
 
         Individual child = new Individual(p1.chromosome, p2.chromosome);
         System.out.println(child.toString());
+        System.out.println(child.getFitness());
 
     }
 
