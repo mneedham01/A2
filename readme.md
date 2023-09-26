@@ -1,0 +1,2 @@
+Reflections on Assignment:
+I found this assigment a lot easier than the previous, as I was able to use the flexibility of ArrayLists and I was already adjusted to coding with Java. The results were pretty interesting: I found that the program was able to produce palindromes pretty quickly (with the current parameters, in the second or third generation). I also found with a maximum chromosome length, the maximum fitness score is 9.
