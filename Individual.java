@@ -32,8 +32,6 @@ public class Individual {
         int p1Length = ThreadLocalRandom.current().nextInt(1, p1.size()+1);
         int p2Length = ThreadLocalRandom.current().nextInt(1, p2.size()+1);
 
-        System.out.println("p1Length= "+ p1Length + " p2Length= "+p2Length);
-
         // add the excerpt from each parent
         // working backwards in the case of the second parent
         for (int i = 0; i < p1Length; i++) {
