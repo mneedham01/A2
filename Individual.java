@@ -1,6 +1,10 @@
 import java.util.ArrayList;
 import java.util.concurrent.ThreadLocalRandom;
 
+/*
+ * Individual class stores information on
+ * the chromosome and fitness level.
+ */
 public class Individual {
 
     ArrayList<Character> chromosome = new ArrayList<Character>();
@@ -52,6 +56,9 @@ public class Individual {
         }
     }
 
+    /*
+     * Returns the fitness score of an Individual
+     */
     public int getFitness() {
         int fitness = 0;
         int size = this.chromosome.size();
@@ -89,7 +96,9 @@ public class Individual {
         return builder.toString();
         //return chromosome.stream().map(e->e.toString()).collect(Collectors.joining());
     }
-
+    /*
+     * Testing main method
+     */
     public static void main(String[] args) {
         Individual p1 = new Individual();
         System.out.println(p1.toString());
@@ -100,7 +109,6 @@ public class Individual {
         Individual child = new Individual(p1.chromosome, p2.chromosome);
         System.out.println(child.toString());
         System.out.println(child.getFitness());
-
     }
 
 }
